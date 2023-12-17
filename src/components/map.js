@@ -28,6 +28,15 @@ export default function Map(){
                     tileSize: 256,
                     attribution: 'MapAnt',
                 },
+                oldMapTiles: {
+                    type: 'raster',
+                    tiles: ['./tiles/{z}/{x}/{y}.png'],
+                    tileSize: 256,
+                    attribution: 'Jukola 2024',
+                    maxzoom: 16,
+                    minzoom: 10,
+                    bounds: [22.9741304476998884, 63.1381678417085865, 23.0975667163662273, 63.1911428168735370],
+                },
                 forbiddenAreaPolygon: {
                     type: 'geojson',
                     data: './data/forbiddenArea.geojson'
@@ -44,6 +53,11 @@ export default function Map(){
                     type: 'raster',
                     source: 'mapantTiles',
                     maxzoom: 20,
+                },
+                {
+                    id: 'oldMaps',
+                    type: 'raster',
+                    source: 'oldMapTiles',
                 },
                 {
                     id: 'forbiddenArea',
@@ -69,7 +83,6 @@ export default function Map(){
       map.current.addControl(
         new maplibregl.TerrainControl({
             source: 'terrainSource',
-            
             exaggeration: 10
         })
       );
