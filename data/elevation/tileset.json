@@ -1,0 +1,26 @@
+{
+    "tiles": [
+        "./data/elevation/{z}/{x}/{y}.png"
+    ],
+    "name": "",
+    "format": "png",
+    "basename": "terrainrgbtiles",
+    "id": "terrainrgb",
+    "description": "",
+    "version": "1",
+    "type": "baselayer",
+    "minzoom": 10,
+    "maxzoom": 15,
+    "bounds": [
+        -180,
+        -85.05112877980659,
+        180,
+        85.0511287798066
+    ],
+    "center": [
+        0,
+        0,
+        6
+    ],
+    "tilejson": "2.0.0"
+}
