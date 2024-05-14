@@ -5,6 +5,7 @@ export default function Navbar(){
   return (
     <div className="heading">
     <h1>Lakiajukola karttaselain</h1>
+    <div id="distance" className="distance-container">test</div>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import './measureControl.css';
+import length from '@turf/length';
 
 class MeasureControl {
     onAdd(map) {
@@ -113,8 +114,13 @@ class MeasureControl {
             this._geojson.features.push(this._linestring)
 
             this._map.getSource('measureGeojson').setData(this._geojson)
+            
+            const distanceContainer = document.getElementById('distance')
+            distanceContainer.innerHTML = ''
+            distanceContainer.innerHTML = `${length(this._linestring, {units: 'kilometers'}).toFixed(2)} km`
         }
     }
+
     _measureMoveHandler = (e) => {
         const features = this._map.queryRenderedFeatures(e.point, {
             layers: ['measure-points']
