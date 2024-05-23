@@ -32,6 +32,8 @@ class MeasureControl {
             this._map.removeSource('measureGeojson')
             this._map.off('click', this._measureClickHandler)
             this._map.off('mousemove', this._measureMoveHandler)
+            const distanceContainer = document.getElementById('distance')
+            distanceContainer.innerHTML = ''
         } else {
             this._geojson = {
                 'type': 'FeatureCollection',
@@ -117,7 +119,7 @@ class MeasureControl {
             
             const distanceContainer = document.getElementById('distance')
             distanceContainer.innerHTML = ''
-            distanceContainer.innerHTML = `${length(this._linestring, {units: 'kilometers'}).toFixed(2)} km`
+            distanceContainer.innerHTML = `<pre>${length(this._linestring, {units: 'kilometers'}).toFixed(2)} km</pre>`
         }
     }
 

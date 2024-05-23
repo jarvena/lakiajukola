@@ -1,5 +1,8 @@
 .heading {
-  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
   padding: 0px;
   background-color: black;
   color: white;
@@ -9,8 +12,15 @@
 .heading > h1 {
   padding: 20px;
   margin: 0;
+  margin-left: auto;
 }
 
-.distance-container {
-  text-align: right;
+.download-button {
+  padding-right: 20px;
+  margin-left: auto;
+  font-size: x-large;
+}
+
+.download-button a {
+  color: white;
 }

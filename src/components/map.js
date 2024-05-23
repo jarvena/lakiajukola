@@ -3,7 +3,6 @@ import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import './map.css';
 
-import { MaplibreExportControl, Size, PageOrientation, Format, DPI} from "@watergis/maplibre-gl-export";
 import '@watergis/maplibre-gl-export/dist/maplibre-gl-export.css';
 
 import MeasureControl from '../buttons/measureControl';
@@ -24,7 +23,7 @@ export default function Map(){
             sources: {
                 mapantTiles: {
                     type: 'raster',
-                    tiles: ['https://wmts.mapant.fi/wmts_EPSG3857.php?z={z}&y={y}&x={x}'],
+                    tiles: ['https://mapant-fpm-hetzner.finomena.fi/wmts_EPSG3857.php?z={z}&x={x}&y={y}'], //'https://wmts.mapant.fi/wmts_EPSG3857.php?z={z}&y={y}&x={x}', Disable official mapant until it is fixed
                     tileSize: 256,
                     attribution: 'MapAnt',
                 },
@@ -35,7 +34,7 @@ export default function Map(){
                     attribution: 'Jukola 2024',
                     maxzoom: 16,
                     minzoom: 10,
-                    bounds: [22.9741304476998884, 63.1381678417085865, 23.0975667163662273, 63.1911428168735370],
+                    bounds: [22.9741304476998884, 63.123, 23.0975667163662273, 63.1911428168735370],
                 },
                 forbiddenAreaPolygon: {
                     type: 'geojson',
@@ -65,11 +64,15 @@ export default function Map(){
                     source: 'forbiddenAreaPolygon',
                     paint: {
                       'line-color': '#CC29CC',
-                      'line-width': [
+                      'line-width':  [
                         'interpolate', 
+                        // ['linear'], 
+                        // ['zoom'], 
+                        // 10, 2, 
+                        // 24, 3
                         ['exponential', 2], 
                         ['zoom'],
-                        10, ["*", 10, ["^", 2, -6]], 
+                        12, ["*", 10, ["^", 2, -2]], 
                         24, ["*", 10, ["^", 2, 8]]
                     ],
                     }
@@ -77,7 +80,9 @@ export default function Map(){
             ],
         },
         center: [lng, lat],
-        zoom: zoom
+        zoom: zoom,
+        maxZoom: 18,
+        minZoom: 10,
       });
       map.current.addControl(new maplibregl.NavigationControl(), 'top-right');
       map.current.addControl(
@@ -86,21 +91,13 @@ export default function Map(){
             exaggeration: 10
         })
       );
-      map.current.addControl(new MaplibreExportControl({
-        PageSize: Size.A3,
-        PageOrientation: PageOrientation.Portrait,
-        Format: Format.PNG,
-        DPI: DPI[96],
-        Crosshair: true,
-        PrintableArea: true,
-        AllowedSizes: ['A2','A3','A4'],
-      }), 'top-right');
       map.current.addControl(new MeasureControl())
     });
   
     return (
       <div className="map-wrap">
         <div ref={mapContainer} className="map" />
+        <div id="distance" className="distance-container"></div>
       </div>
     );
   }
