@@ -10,9 +10,9 @@ import MeasureControl from '../buttons/measureControl';
 export default function Map(){
     const mapContainer = useRef(null);
     const map = useRef(null);
-    const [lng] = useState(23.052577972412);
-    const [lat] = useState(63.138004141458);
-    const [zoom] = useState(14);
+    const [lng] = useState(23.036);
+    const [lat] = useState(63.16);
+    const [zoom] = useState(12.5);
   
     useEffect(() => {
       if (map.current) return;
@@ -23,7 +23,7 @@ export default function Map(){
             sources: {
                 mapantTiles: {
                     type: 'raster',
-                    tiles: ['https://mapant-fpm-hetzner.finomena.fi/wmts_EPSG3857.php?z={z}&x={x}&y={y}'], //'https://wmts.mapant.fi/wmts_EPSG3857.php?z={z}&y={y}&x={x}', Disable official mapant until it is fixed
+                    tiles: ['https://wmts.mapant.fi/wmts_EPSG3857.php?z={z}&y={y}&x={x}'],
                     tileSize: 256,
                     attribution: 'MapAnt',
                 },
