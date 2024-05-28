@@ -30,7 +30,7 @@ export default function Map(){
                 oldMapTiles: {
                     type: 'raster',
                     tiles: ['./tiles/{z}/{x}/{y}.png'],
-                    tileSize: 256,
+                    tileSize: 512,
                     attribution: 'Jukola 2024',
                     maxzoom: 16,
                     minzoom: 10,
