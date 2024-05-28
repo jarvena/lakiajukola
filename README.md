@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+To start with the development, `git clone` the repo and run `npm install` to install the dependencies.
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -28,6 +30,10 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run deploy`
+
+Builds the code and publishes the project to Github Pages. Uses [gh-pages](https://www.npmjs.com/package/gh-pages) in the background.
 
 ### `npm run eject`
 
